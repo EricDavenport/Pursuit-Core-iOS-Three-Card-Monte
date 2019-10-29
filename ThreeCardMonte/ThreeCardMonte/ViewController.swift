@@ -6,101 +6,66 @@
 //  Copyright © 2018 Pursuit. All rights reserved.
 //
 
+
 import UIKit
 
 class ViewController: UIViewController {
 
-    var gameOn: Bool = true
+    @IBOutlet weak var winLoseMessage: UILabel!
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-  }
+    var wins: Int = 0
     
-      @IBOutlet weak var threeCardMonteButton: UILabel!
+    let imageArray = ["threeCard", "kingCard", "threeCard"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func newGame(_ sender: UIButton) {
         
     }
+    
+    
+    
 
-    
-
-    @IBOutlet weak var winLoseDisplay: UILabel!
-    
-     let cardImages = ["threeCard", "threeCard", "kingCard"]
-    
-    
-    
-    @IBOutlet var cardCollection: [UIButton]!
-   
-    
-    @IBAction func winningCard(_ sender: UIButton) {
+    @IBAction func flipCard(_ sender: UIButton) {
         
-        let randomCard = cardImages.randomElement() ?? "threeCard"
-        repeat{
-            
+        sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
         
-        switch sender.tag {
-        case 0:
-            sender.setBackgroundImage(UIImage(named: "\(cardImages.randomElement() ?? "threeCard")") , for: UIControl.State.normal)
-            gameOn = false
-
-            if randomCard == "kingCard"{
-                winLoseDisplay.text = "You Win!!"
-            } else if randomCard == "threeCard" {
-                winLoseDisplay.text = "You Lose!!"
-            }
-        case 1:
-            sender.setBackgroundImage(UIImage(named:"\(cardImages.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
-            gameOn = false
-
-            if randomCard == "kingCard"{
-                winLoseDisplay.text = "You Win!!"
-            } else if randomCard == "threeCard" {
-                winLoseDisplay.text = "You Lose!!"
-            }
-        case 2:
-        sender.setBackgroundImage(UIImage(named:"\(cardImages.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
-            gameOn = false
-
-            if randomCard == "kingCard"{
-                winLoseDisplay.text = "You Win!!"
-            } else if randomCard == "threeCard" {
-                winLoseDisplay.text = "You Lose!!"
-            }
-            
-        case 3:
-        sender.setBackgroundImage(UIImage(named:"\(cardImages.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
-            gameOn = false
-
-            if randomCard == "kingCard"{
-                winLoseDisplay.text = "You Win!!"
-            } else if randomCard == "threeCard" {
-                winLoseDisplay.text = "You Lose!!"
-            }
-            gameOn = false
-        case 4:
-        sender.setBackgroundImage(UIImage(named: "\(cardImages.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
-            gameOn = false
-            if randomCard == "kingCard"{
-                winLoseDisplay.text = "You Win!!"
-            } else if randomCard == "threeCard" {
-                winLoseDisplay.text = "You Lose!!"
-            }
-            
-        default:
-        sender.setBackgroundImage(UIImage(named: "\(cardImages.randomElement() ?? "threeCard")") , for: UIControl.State.normal)
-            gameOn = false
-            if randomCard == "kingCard"{
-                winLoseDisplay.text = "You Win!!"
-            } else if randomCard == "threeCard" {
-                winLoseDisplay.text = "You Lose!!"
-            }
-            
-            
-            }
+        let randomNumber = Int.random(in: 0...2)
+//        let tag = sender.tag
+//            switch tag {
+//            case 1:
+//                sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
+//            case 2:
+//                sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
+//            case 3:
+//                sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
+//            case 4:
+//                sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
+//            case 5:
+//                sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
+//            default:
+//                sender.setBackgroundImage(UIImage(named:"\(imageArray.randomElement() ?? "threeCard")"), for: UIControl.State.normal)
+//            }
         
-        } while gameOn == true
-      
+        if sender.tag == randomNumber {
+             sender.setBackgroundImage(UIImage(named:"kingCard"), for: UIControl.State.normal)
+            wins += 1
+            winLoseMessage.text = "YOU WIN!!! \(wins) wins"
+            
+        } else {
+            sender.setBackgroundImage(UIImage(named: "threeCard"), for: UIControl.State.normal)
+            winLoseMessage.text = "YOU LOSE!!!"
+        }
         
         
+            
+        
+        
+        
+    }
+    
 }
-  
+
