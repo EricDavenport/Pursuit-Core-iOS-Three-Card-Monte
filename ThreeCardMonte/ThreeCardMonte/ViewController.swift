@@ -59,6 +59,18 @@ class ViewController: UIViewController {
             winLoseMessage.text = "YOU LOSE!!!"
             
             for button in buttonArray {
+            button?.isEnabled = false
+            
+            switch randomNumber {
+            case 0:
+                 card1.setBackgroundImage(UIImage(named:"kingCard"), for: UIControl.State.normal)
+            case 1:
+                 card2.setBackgroundImage(UIImage(named:"kingCard"), for: UIControl.State.normal)
+            case 2:
+                 card3.setBackgroundImage(UIImage(named:"kingCard"), for: UIControl.State.normal)
+            default:
+                winLoseMessage.text = "Please select a card"
+            }
                 button?.isEnabled = false
             }
         }
